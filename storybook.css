@@ -1,0 +1,14 @@
+.reveal pre code {
+	max-height: 543px;
+	line-height: 1.2;
+}
+
+.slide-background.intro-slide {
+	background: url('intro.png');
+	background-size: cover;
+}
+
+.slide-background.storybook {
+	background: url('01-storybook.gif');
+	background-size: cover;
+}
