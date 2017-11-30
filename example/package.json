@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "./node_modules/.bin/start-storybook -p 9001 -c .storybook"
+    "storybook": "./node_modules/.bin/start-storybook -p 9001 -c .storybook",
+    "storybook-build": "./node_modules/.bin/build-storybook -c .storybook -o ../docs/example"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@storybook/addon-knobs": "^3.2.16",
     "@storybook/react": "^3.2.16",
     "babel-core": "^6.26.0",
     "react": "^16.1.1",
