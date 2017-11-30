@@ -2,6 +2,8 @@
 
 This repo contains the slide content (and generation capability) for the talk "Design for Success with [React](https://reactjs.org/) and [Storybook.js](https://storybook.js.org/)".
 
+View the slides on [Speaker Deck](https://speakerdeck.com/cjsaylor/design-for-success-with-react-and-storybooks)
+
 - [Building Slides](#building-slides)
   - [Quick Start](#quick-start)
   - [Hacking](#hacking)
