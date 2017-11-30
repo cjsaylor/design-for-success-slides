@@ -5,7 +5,7 @@ This repo contains the slide content (and generation capability) for the talk "D
 - [Building Slides](#building-slides)
   - [Quick Start](#quick-start)
   - [Hacking](#hacking)
-- [Running example storybook]()
+- [Running example storybook](#running-example-storybook)
 
 ## Building slides
 
