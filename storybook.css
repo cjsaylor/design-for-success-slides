@@ -8,7 +8,33 @@
 	background-size: cover;
 }
 
+.slide-background.sketchapp {
+	background: url('03-text-styles-opt.jpg');
+	background-size: cover;
+}
+
+section.sketchapp {
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	border: 1px solid white;
+}
+
 .slide-background.storybook {
 	background: url('01-storybook.gif');
+	background-size: cover;
+}
+
+.slide-background.actions {
+	background: url('07-storybook.gif');
+	background-size: cover;
+}
+
+.slide-background.knobs {
+	background: url('08-knobs.gif');
+	background-size: cover;
+}
+
+.slide-background.unittest {
+	background: url('09-unittest.png');
 	background-size: cover;
 }

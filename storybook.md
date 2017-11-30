@@ -14,13 +14,9 @@ theme: ./node_modules/reveal-cleaver-theme
 # Design?
 ## That's someone elses job.
 
---
+-- sketchapp
 
-Ugh, another sketch/photoshop slice job
-
-Maybe, if I had been involved...
-
-![](./03-text-styles-opt.jpg)
+Ugh, another sketch/photoshop slice job. Maybe, if I had been involved...
 
 --
 
@@ -182,6 +178,8 @@ storiesOf('List', module)
 
 * Show when user actions occur in the view
 
+-- actions
+
 --
 
 ### Add a click action
@@ -231,18 +229,56 @@ storiesOf('List', module)
 
 --
 
-![](./07-storybook.gif)
+### Storybook Capabilities
+
+* Allow User Input In Stories
+
+-- knobs
 
 --
 
-### @todo:
+### Add the "knobs" addon
 
-* Additional reasons why?
-  * Show some plugins like "knob" and linkage
-  * No need to have an existing app, can have standalone components that storybook draws
-  * functional testing embedded into storybook
-  * Reusable container components for data retrieval with react-native apps
-* React-native considerations?
+```js
+// addons.js
+import '@storybook/addon-knobs/register';
+```
+
+This is what is responsible for showing the panel
+
+--
+
+### Modify the story
+```jsx
+import { storiesOf, action } from '@storybook/react';
+import List from './list-component';
+import {withKnobs, array} from '@storybook/addon-knobs';
+
+storiesOf('List', module)
+	.addDecorator(withKnobs)
+	.add('Multiple items', () => {
+        return (
+            <List
+                onItemClicked={action('Item clicked!')}
+                items={
+                    array('Items', [
+                        'item 1',
+                        'item 2',
+                        'item 3'
+                    ])
+                }
+            />
+        );
+    });
+```
+
+--
+
+### Storybook Capabilities
+
+* Interactive Unit Tests
+
+-- unittest
 
 --
 
@@ -255,4 +291,93 @@ storiesOf('List', module)
 
 --
 
+### Resources
+
+* https://github.com/cjsaylor/design-for-success-slides
+* https://www.chris-saylor.com/design-for-success-slides/example
+
+--
+
 # Questions?
+
+--
+
+![](./columbo.jpg)
+
+--
+
+## React-Native considerations
+
+--
+
+### Remember this?
+```jsx
+import List from './list-component';
+export class ListContainer extends React.Component {
+
+    state = { items: [] }
+
+    async componentDidMount() {
+        this.setState({
+            items: await fetch('/items')
+        });
+    }
+
+    render() {
+        return <List items={this.state.items}/>
+    }
+}
+```
+
+--
+
+### React DOM & Native...together?
+
+--
+
+### Higher-Order Component (HOC)
+
+> Reference: https://reactjs.org/docs/higher-order-components.html
+
+--
+
+```jsx
+export default function withListData(WrappedComponent) {
+    return class extends React.Component {
+        state = { items: [] }
+        async componentDidMount() {
+            this.setState({
+                items: await fetch('/items')
+            });
+        }
+
+        render() {
+            return <WrappedComponent items={this.state.items}/>
+        }
+    }
+}
+```
+
+--
+
+### Using the new HOC in React Native
+
+```jsx
+import List from './list-component';
+import withListData from 'list-container';
+
+export default class SomeReactView extends React.Component {
+    componentDidMount() {
+        this.wrappedList = withListData(<List/>);
+    }
+
+    render() {
+        const WrappedList = this.wrappedList;
+        return <WrappedList/>;
+    }
+}
+```
+
+--
+
+# Fin
