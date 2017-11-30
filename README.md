@@ -6,6 +6,7 @@ This repo contains the slide content (and generation capability) for the talk "D
   - [Quick Start](#quick-start)
   - [Hacking](#hacking)
 - [Running example storybook](#running-example-storybook)
+  - [View the example storybook](#view-the-example-storybook)
 
 ## Building slides
 
@@ -37,3 +38,7 @@ npm run storybook
 ```
 
 Running the above will start a node server that serves the storybook files and sets up webpack that allows automatic refreshing of changes over websockets.
+
+### View the example storybook
+
+You can view the example storybook [here](https://www.chris-saylor.com/design-for-success-slides/example).
