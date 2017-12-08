@@ -9,6 +9,12 @@ theme: ./node_modules/reveal-cleaver-theme
 
 -- intro-slide
 
+# Chris Saylor
+
+## Lead Engineer @ Zumba
+
+@cjsaylor
+
 --
 
 # Design?
