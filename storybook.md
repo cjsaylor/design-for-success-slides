@@ -44,6 +44,14 @@ Ugh, another sketch/photoshop slice job. Maybe, if I had been involved...
 
 --
 
+### Why Should we care about design?
+
+* Gateway for user acquisition
+* Can reduce bugs
+* Software that isn't used is pointless
+
+--
+
 # How do we bridge the gap?
 
 --
