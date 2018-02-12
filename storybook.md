@@ -52,6 +52,12 @@ Ugh, another sketch/photoshop slice job. Maybe, if I had been involved...
 
 --
 
+### Why Should we care about design?
+
+Bad UX designs makes us susceptible to disruption.
+
+--
+
 # How do we bridge the gap?
 
 --
@@ -102,11 +108,9 @@ export default class ListComponent extends React.Component {
         return this.state.items.map(item => <li>{item}</li>)
     }
 
-    render() {
-        return (
-            <ul>{ this.renderItems() }</ul>
-        );
-    }
+    render = () => (
+        <ul>{ this.renderItems() }</ul>
+    )
 }
 ```
 
@@ -121,16 +125,11 @@ export default class ListComponent extends React.Component {
 export default class ListComponent extends React.Component {
 
     renderItems = () => {
-        return (this.props.items || []).map(item => <li>{item}</li>)
+        return (this.props.items || [])
+            .map(item => <li>{item}</li>)
     }
 
-    render() {
-        return (
-            <ul>
-                { this.renderItems() }
-            </ul>
-        )
-    }
+    render = () => <ul>{ this.renderItems() }</ul>
 }
 ```
 
@@ -139,7 +138,7 @@ export default class ListComponent extends React.Component {
 ### Pass the state data to the view
 ```jsx
 import List from './list-component';
-export class ListContainer extends React.Component {
+export default class ListContainer extends React.Component {
 
     state = { items: [] }
 
@@ -149,9 +148,7 @@ export class ListContainer extends React.Component {
         });
     }
 
-    render() {
-        return <List items={this.state.items}/>
-    }
+    render = () => <List items={this.state.items}/>
 }
 ```
 
@@ -207,14 +204,12 @@ export default class ListComponent extends React.Component {
 
     renderItems = () => {
         return (this.props.items || [])
-            .map(item => {
-                return <li onClick={this.onClick}>{item}</li>
-            });
+            .map(item => (
+                <li onClick={this.onClick}>{item}</li>
+            ));
     }
 
-    render() {
-        return <ul>{ this.renderItems() }</ul>
-    }
+    render = () => <ul>{ this.renderItems() }</ul>
 
 }
 ```
@@ -228,8 +223,6 @@ import { storiesOf, action } from '@storybook/react';
 import List from './list-component';
 
 storiesOf('List', module)
-    .add('No items', () => <List />)
-    .add('One item', () => <List items={['item 1']} />)
     .add('Multiple items', () => {
         return (
             <List
@@ -270,20 +263,18 @@ import {withKnobs, array} from '@storybook/addon-knobs';
 
 storiesOf('List', module)
 	.addDecorator(withKnobs)
-	.add('Multiple items', () => {
-        return (
-            <List
-                onItemClicked={action('Item clicked!')}
-                items={
-                    array('Items', [
-                        'item 1',
-                        'item 2',
-                        'item 3'
-                    ])
-                }
-            />
-        );
-    });
+	.add('Multiple items', () => (
+        <List
+            onItemClicked={action('Item clicked!')}
+            items={
+                array('Items', [
+                    'item 1',
+                    'item 2',
+                    'item 3'
+                ])
+            }
+        />
+    ));
 ```
 
 --
@@ -327,7 +318,7 @@ storiesOf('List', module)
 ### Remember this?
 ```jsx
 import List from './list-component';
-export class ListContainer extends React.Component {
+export default class ListContainer extends React.Component {
 
     state = { items: [] }
 
@@ -337,9 +328,7 @@ export class ListContainer extends React.Component {
         });
     }
 
-    render() {
-        return <List items={this.state.items}/>
-    }
+    render = () => <List items={this.state.items}/>
 }
 ```
 
@@ -356,18 +345,20 @@ export class ListContainer extends React.Component {
 --
 
 ```jsx
-export default function withListData(WrappedComponent) {
+export default function withListData(WrappableComponent) {
     return class extends React.Component {
+
         state = { items: [] }
+
         async componentDidMount() {
             this.setState({
                 items: await fetch('/items')
             });
         }
 
-        render() {
-            return <WrappedComponent items={this.state.items}/>
-        }
+        render = () => (
+            <WrappableComponent items={this.state.items}/>
+        )
     }
 }
 ```
@@ -377,7 +368,7 @@ export default function withListData(WrappedComponent) {
 ### Using the new HOC in React Native
 
 ```jsx
-import List from './list-component';
+import List from './native/list-component';
 import withListData from 'list-container';
 
 export default class SomeReactView extends React.Component {
@@ -386,6 +377,9 @@ export default class SomeReactView extends React.Component {
     }
 
     render() {
+        if (!this.wrappedList) {
+            return null;
+        }
         const WrappedList = this.wrappedList;
         return <WrappedList/>;
     }
