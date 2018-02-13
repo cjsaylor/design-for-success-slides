@@ -33,13 +33,23 @@ Ugh, another sketch/photoshop slice job. Maybe, if I had been involved...
 
 --
 
+### Common Design Workflow
+
+![](common-design-flow.png)
+
+### = ?
+
+<small>Image source: <a href="https://medium.com/@nicolesaidy/how-to-streamline-your-ui-ux-workflow-with-figma-b72c30596435">@nicolesaidy</a></small>
+
+--
+
 ### Having Designs delivered:
-* Inconsistant designs between "pages"
+* Design elements tend to be "pages" and not components
 * Can't easily show animations or responsive designs
-* Usually design elements are not modular or componentized
 * Version control?
-* Some things may not be possible in a browser
+* Some things may not be possible (or realistic) in a browser
 * Still have a lot of work to "translate" to html
+
 ... and it may not be pixel perfect!
 
 --
