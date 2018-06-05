@@ -4,7 +4,7 @@
 }
 
 .slide-background.intro-slide {
-	background: url('strong-class-hero.jpg');
+	background: url('assets/strong-class-hero.jpg');
 	background-size: cover;
 }
 
@@ -19,7 +19,7 @@ section.intro-slide h1, section.intro-slide h2 {
 }
 
 .slide-background.sketchapp {
-	background: url('03-text-styles-opt.jpg');
+	background: url('assets/03-text-styles-opt.jpg');
 	background-size: cover;
 }
 
@@ -30,26 +30,26 @@ section.sketchapp {
 }
 
 .slide-background.storybook {
-	background: url('01-storybook.gif');
+	background: url('assets/01-storybook.gif');
 	background-size: cover;
 }
 
 .slide-background.actions {
-	background: url('07-storybook.gif');
+	background: url('assets/07-storybook.gif');
 	background-size: cover;
 }
 
 .slide-background.knobs {
-	background: url('08-knobs.gif');
+	background: url('assets/08-knobs.gif');
 	background-size: cover;
 }
 
 .slide-background.unittest {
-	background: url('09-unittest.png');
+	background: url('assets/09-unittest.png');
 	background-size: cover;
 }
 
 .slide-background.case-studies {
-	background: url('case-studies.png');
+	background: url('assets/case-studies.png');
 	background-size: cover;
 }
