@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cleaver": "^0.8.5",
+    "cleaver": "^0.8.6",
     "reveal-cleaver-theme": "^1.0.0"
   }
 }
