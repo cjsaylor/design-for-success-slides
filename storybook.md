@@ -28,8 +28,19 @@ Ugh, another sketch/photoshop slice job. Maybe, if I had been involved...
 
 ### Why do we do it?
 
-* No code involved, so designers can work completely independently
+* No code involved, so designers can work autonomously
 * Developers usually viewed as "bad" designers
+* Developers say no too often
+
+--
+
+### Why Should we care about design?
+
+Bad UX designs makes us susceptible to disruption.
+
+--
+
+![](ride-hail.png)
 
 --
 
@@ -43,32 +54,17 @@ Ugh, another sketch/photoshop slice job. Maybe, if I had been involved...
 
 --
 
-### Having Designs delivered:
-* Design elements tend to be "pages" and not components
-* Can't easily show animations or responsive designs
-* Version control?
-* Some things may not be possible (or realistic) in a browser
-* Still have a lot of work to "translate" to html
-
-... and it may not be pixel perfect!
-
---
-
-### Why Should we care about design?
-
-* Gateway for user acquisition
-* Can reduce bugs
-* Software that isn't used is pointless
-
---
-
-### Why Should we care about design?
-
-Bad UX designs makes us susceptible to disruption.
-
---
-
 # How do we bridge the gap?
+
+--
+
+### ~~Common~~ Design Workflow
+
+![](common-design-flow-modified.png)
+
+### = ?
+
+<small>Image source: <a href="https://medium.com/@nicolesaidy/how-to-streamline-your-ui-ux-workflow-with-figma-b72c30596435">@nicolesaidy</a></small>
 
 --
 
@@ -78,8 +74,14 @@ Bad UX designs makes us susceptible to disruption.
 
 --
 
+### Why not just create an html styleguide?
+* Gets stale almost immediately.
+* The language barrier between designers and developers makes it hard to reference.
+
+--
+
 ### Why Storybook.js?
-* Integrates with React and Vue.js
+* Integrates with React, Vue.js, and Angular
 * Immediate feedback of changes
 * Easily see history of changes
 * At the end of the design phase, we have functional components!
@@ -90,15 +92,7 @@ Bad UX designs makes us susceptible to disruption.
 
 --
 
-> Disclaimer: you'll need developer and designer buy-in
-
---
-
 ### Keep data retrieval separate
-
-* Avoid state in your views as much as possible
-* Compose your components as much as possible
-* Use props to pass in data
 
 --
 
@@ -175,9 +169,9 @@ import List from './list-component';
 storiesOf('List', module)
     .add('No items', () => <List />)
     .add('One item', () => <List items={['item 1']} />)
-    .add('Multiple items', () => {
-        return <List items={['item 1', 'item 2', 'item 3']} />;
-    });
+    .add('Multiple items', () => (
+        <List items={['item 1', 'item 2', 'item 3']} />
+    ));
 
 ```
 
@@ -226,10 +220,26 @@ export default class ListComponent extends React.Component {
 
 --
 
+### Add the "actions" addon
+
+```bash
+$ npm install @storybook/addon-actions
+```
+
+```js
+// addons.js
+import '@storybook/addon-actions/register';
+```
+
+This is what is responsible for showing the action panel
+
+--
+
 ### Modify our story for the action
 
 ```jsx
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import List from './list-component';
 
 storiesOf('List', module)
@@ -256,6 +266,10 @@ storiesOf('List', module)
 
 ### Add the "knobs" addon
 
+```bash
+$ npm install @storybook/addon-knobs
+```
+
 ```js
 // addons.js
 import '@storybook/addon-knobs/register';
@@ -267,8 +281,9 @@ This is what is responsible for showing the panel
 
 ### Modify the story
 ```jsx
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import List from './list-component';
+import { action } from '@storybook/addon-actions';
 import {withKnobs, array} from '@storybook/addon-knobs';
 
 storiesOf('List', module)
@@ -297,6 +312,44 @@ storiesOf('List', module)
 
 --
 
+# Utilize in Your Workflow
+
+--
+
+### Styleguides
+
+* Show what components are available for composition
+* Can show full page layouts
+
+--
+
+![](styleguide1.png)
+
+--
+
+![](styleguide2.png)
+
+--
+
+### Prototyping
+
+* No backend required
+* Get a feel for the product before investing in backend integration
+
+--
+
+### Product Demos
+
+* Stitch together stories With the `link` addon to demo a product.
+
+--
+
+# Case Studies
+
+-- case-studies
+
+--
+
 ### Conclusion
 
 * Getting involved in the design process doesn't have to be scary
@@ -306,95 +359,15 @@ storiesOf('List', module)
 
 --
 
-### Resources
-
-* https://github.com/cjsaylor/design-for-success-slides
-* https://www.chris-saylor.com/design-for-success-slides/example
-
---
-
 # Questions?
 
 --
 
-![](./columbo.jpg)
+### Resources
 
---
-
-## React-Native considerations
-
---
-
-### Remember this?
-```jsx
-import List from './list-component';
-export default class ListContainer extends React.Component {
-
-    state = { items: [] }
-
-    async componentDidMount() {
-        this.setState({
-            items: await fetch('/items')
-        });
-    }
-
-    render = () => <List items={this.state.items}/>
-}
-```
-
---
-
-### React DOM & Native...together?
-
---
-
-### Higher-Order Component (HOC)
-
-> Reference: https://reactjs.org/docs/higher-order-components.html
-
---
-
-```jsx
-export default function withListData(WrappableComponent) {
-    return class extends React.Component {
-
-        state = { items: [] }
-
-        async componentDidMount() {
-            this.setState({
-                items: await fetch('/items')
-            });
-        }
-
-        render = () => (
-            <WrappableComponent items={this.state.items}/>
-        )
-    }
-}
-```
-
---
-
-### Using the new HOC in React Native
-
-```jsx
-import List from './native/list-component';
-import withListData from 'list-container';
-
-export default class SomeReactView extends React.Component {
-    componentDidMount() {
-        this.wrappedList = withListData(<List/>);
-    }
-
-    render() {
-        if (!this.wrappedList) {
-            return null;
-        }
-        const WrappedList = this.wrappedList;
-        return <WrappedList/>;
-    }
-}
-```
+* https://speakerdeck.com/cjsaylor/design-for-success-with-react-and-storybooks
+* https://github.com/cjsaylor/design-for-success-slides
+* https://www.chris-saylor.com/design-for-success-slides/example
 
 --
 

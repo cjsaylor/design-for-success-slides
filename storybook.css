@@ -48,3 +48,8 @@ section.sketchapp {
 	background: url('09-unittest.png');
 	background-size: cover;
 }
+
+.slide-background.case-studies {
+	background: url('case-studies.png');
+	background-size: cover;
+}
