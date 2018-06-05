@@ -7,14 +7,20 @@ export default class ListComponent extends Component {
 	}
 
 	renderItems() {
-		return (this.props.items || []).map((item, i) => <li key={i} onClick={this.onClick}>{item}</li>)
+		return (this.props.items || [])
+			.map((item, i) => <li key={i} onClick={this.onClick}>{item}</li>)
 	}
 
 	render() {
 		return (
-			<ul>
-				{this.renderItems()}
-			</ul>
+			<div>
+				{!this.props.items.length &&
+					<p>No Items.</p>
+				}
+				<ul>
+					{this.renderItems()}
+				</ul>
+			</div>
 		)
 	}
 
