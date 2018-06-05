@@ -1,0 +1,55 @@
+.reveal pre code {
+	max-height: 543px;
+	line-height: 1.2;
+}
+
+.slide-background.intro-slide {
+	background: url('assets/strong-class-hero.jpg');
+	background-size: cover;
+}
+
+section.intro-slide {
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	border-radius: 12px;
+}
+
+section.intro-slide h1, section.intro-slide h2 {
+	color: white;
+}
+
+.slide-background.sketchapp {
+	background: url('assets/03-text-styles-opt.jpg');
+	background-size: cover;
+}
+
+section.sketchapp {
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	border: 1px solid white;
+}
+
+.slide-background.storybook {
+	background: url('assets/01-storybook.gif');
+	background-size: cover;
+}
+
+.slide-background.actions {
+	background: url('assets/07-storybook.gif');
+	background-size: cover;
+}
+
+.slide-background.knobs {
+	background: url('assets/08-knobs.gif');
+	background-size: cover;
+}
+
+.slide-background.unittest {
+	background: url('assets/09-unittest.png');
+	background-size: cover;
+}
+
+.slide-background.case-studies {
+	background: url('assets/case-studies.png');
+	background-size: cover;
+}

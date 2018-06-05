@@ -1,0 +1,605 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Design for Succcess with React and Storybook.js</title>
+  <link rel="stylesheet" href="./node_modules/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="./node_modules/reveal.js/css/theme/white.css">
+  <link rel="stylesheet" href="./node_modules/prismjs/themes/prism.css">
+  <style type="text/css">
+    .reveal pre code {
+	max-height: 543px;
+	line-height: 1.2;
+}
+
+.slide-background.intro-slide {
+	background: url('assets/strong-class-hero.jpg');
+	background-size: cover;
+}
+
+section.intro-slide {
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	border-radius: 12px;
+}
+
+section.intro-slide h1, section.intro-slide h2 {
+	color: white;
+}
+
+.slide-background.sketchapp {
+	background: url('assets/03-text-styles-opt.jpg');
+	background-size: cover;
+}
+
+section.sketchapp {
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	border: 1px solid white;
+}
+
+.slide-background.storybook {
+	background: url('assets/01-storybook.gif');
+	background-size: cover;
+}
+
+.slide-background.actions {
+	background: url('assets/07-storybook.gif');
+	background-size: cover;
+}
+
+.slide-background.knobs {
+	background: url('assets/08-knobs.gif');
+	background-size: cover;
+}
+
+.slide-background.unittest {
+	background: url('assets/09-unittest.png');
+	background-size: cover;
+}
+
+.slide-background.case-studies {
+	background: url('assets/case-studies.png');
+	background-size: cover;
+}
+  </style>
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ?
+      './node_modules/reveal.js/css/print/pdf.css' :
+      './node_modules/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section class="">
+    <h1 id="design-for-success">Design for Success</h1>
+<h2 id="with-react-and-storybooks">with React and Storybooks</h2>
+
+  </section>
+  <section class=" intro-slide">
+    <h1 id="chris-saylor">Chris Saylor</h1>
+<h2 id="lead-engineer-zumba">Lead Engineer @ Zumba</h2>
+<p>@cjsaylor</p>
+
+  </section>
+  <section class="">
+    <h1 id="design-">Design?</h1>
+<h2 id="that-s-someone-elses-job-">That&#39;s someone elses job.</h2>
+
+  </section>
+  <section class=" sketchapp">
+    <p>Ugh, another sketch/photoshop slice job. Maybe, if I had been involved...</p>
+
+  </section>
+  <section class="">
+    <h3 id="why-do-we-do-it-">Why do we do it?</h3>
+<ul>
+<li>No code involved, so designers can work autonomously</li>
+<li>Developers usually viewed as &quot;bad&quot; designers</li>
+<li>Developers say no too often</li>
+</ul>
+
+  </section>
+  <section class="">
+    <h3 id="why-should-we-care-about-design-">Why Should we care about design?</h3>
+<p>Bad UX designs makes us susceptible to disruption.</p>
+
+  </section>
+  <section class="">
+    <p><img src="assets/ride-hail.png" alt=""></p>
+
+  </section>
+  <section class="">
+    <h3 id="common-design-workflow">Common Design Workflow</h3>
+<p><img src="assets/common-design-flow.png" alt=""></p>
+<h3 id="-">= ?</h3>
+<p><small>Image source: <a href="https://medium.com/@nicolesaidy/how-to-streamline-your-ui-ux-workflow-with-figma-b72c30596435">@nicolesaidy</a></small></p>
+
+  </section>
+  <section class="">
+    <h1 id="how-do-we-bridge-the-gap-">How do we bridge the gap?</h1>
+
+  </section>
+  <section class="">
+    <h3 id="-common-design-workflow"><del>Common</del> Design Workflow</h3>
+<p><img src="assets/common-design-flow-modified.png" alt=""></p>
+<h3 id="-">= ?</h3>
+<p><small>Image source: <a href="https://medium.com/@nicolesaidy/how-to-streamline-your-ui-ux-workflow-with-figma-b72c30596435">@nicolesaidy</a></small></p>
+
+  </section>
+  <section class="">
+    <h1 id="storybook-js">Storybook.js</h1>
+
+  </section>
+  <section class=" storybook">
+    
+  </section>
+  <section class="">
+    <h3 id="why-not-just-create-an-html-styleguide-">Why not just create an html styleguide?</h3>
+<ul>
+<li>Gets stale almost immediately.</li>
+<li>The language barrier between designers and developers makes it hard to reference.</li>
+</ul>
+
+  </section>
+  <section class="">
+    <h3 id="why-storybook-js-">Why Storybook.js?</h3>
+<ul>
+<li>Integrates with React, Vue.js, and Angular</li>
+<li>Immediate feedback of changes</li>
+<li>Easily see history of changes</li>
+<li>At the end of the design phase, we have functional components!</li>
+</ul>
+
+  </section>
+  <section class="">
+    <h1 id="how-">How?</h1>
+
+  </section>
+  <section class="">
+    <h3 id="keep-data-retrieval-separate">Keep data retrieval separate</h3>
+
+  </section>
+  <section class="">
+    <h3 id="typical-react-tutorial-component">Typical React Tutorial Component</h3>
+<pre><code class="lang-jsx">export default class ListComponent extends React.Component {
+    state = { items: [] }
+
+    async componentDidMount() {
+        this.setState({
+            items: await fetch(&#39;/items&#39;)
+        });
+    }
+
+    renderItems() {
+        return this.state.items.map(item =&gt; &lt;li&gt;{item}&lt;/li&gt;)
+    }
+
+    render = () =&gt; (
+        &lt;ul&gt;{ this.renderItems() }&lt;/ul&gt;
+    )
+}</code></pre>
+
+  </section>
+  <section class="">
+    <h1 id="separate-">Separate!</h1>
+
+  </section>
+  <section class="">
+    <h3 id="use-props-to-display">Use props to display</h3>
+<pre><code class="lang-jsx">export default class ListComponent extends React.Component {
+
+    renderItems = () =&gt; {
+        return (this.props.items || [])
+            .map(item =&gt; &lt;li&gt;{item}&lt;/li&gt;)
+    }
+
+    render = () =&gt; &lt;ul&gt;{ this.renderItems() }&lt;/ul&gt;
+}</code></pre>
+
+  </section>
+  <section class="">
+    <h3 id="pass-the-state-data-to-the-view">Pass the state data to the view</h3>
+<pre><code class="lang-jsx">import List from &#39;./list-component&#39;;
+export default class ListContainer extends React.Component {
+
+    state = { items: [] }
+
+    async componentDidMount() {
+        this.setState({
+            items: await fetch(&#39;/items&#39;)
+        });
+    }
+
+    render = () =&gt; &lt;List items={this.state.items}/&gt;
+}</code></pre>
+
+  </section>
+  <section class="">
+    <h1 id="storytime-">Storytime!</h1>
+
+  </section>
+  <section class="">
+    <pre><code class="lang-jsx">import { storiesOf } from &#39;@storybook/react&#39;;
+import List from &#39;./list-component&#39;;
+
+storiesOf(&#39;List&#39;, module)
+    .add(&#39;No items&#39;, () =&gt; &lt;List /&gt;)
+    .add(&#39;One item&#39;, () =&gt; &lt;List items={[&#39;item 1&#39;]} /&gt;)
+    .add(&#39;Multiple items&#39;, () =&gt; (
+        &lt;List items={[&#39;item 1&#39;, &#39;item 2&#39;, &#39;item 3&#39;]} /&gt;
+    ));</code></pre>
+
+  </section>
+  <section class="">
+    <p><img src="assets/./04-storybook.png" alt=""></p>
+
+  </section>
+  <section class="">
+    <p><img src="assets/./05-storybook.png" alt=""></p>
+
+  </section>
+  <section class="">
+    <p><img src="assets/./06-storybook.png" alt=""></p>
+
+  </section>
+  <section class="">
+    <h3 id="storybook-capabilities">Storybook Capabilities</h3>
+<ul>
+<li>Show when user actions occur in the view</li>
+</ul>
+
+  </section>
+  <section class=" actions">
+    
+  </section>
+  <section class="">
+    <h3 id="add-a-click-action">Add a click action</h3>
+<pre><code class="lang-jsx">export default class ListComponent extends React.Component {
+
+    onClick = (e) =&gt; {
+        this.props.onItemClicked(e.target.innerText);
+    }
+
+    renderItems = () =&gt; {
+        return (this.props.items || [])
+            .map(item =&gt; (
+                &lt;li onClick={this.onClick}&gt;{item}&lt;/li&gt;
+            ));
+    }
+
+    render = () =&gt; &lt;ul&gt;{ this.renderItems() }&lt;/ul&gt;
+
+}</code></pre>
+
+  </section>
+  <section class="">
+    <h3 id="add-the-actions-addon">Add the &quot;actions&quot; addon</h3>
+<pre><code class="lang-bash">$ npm install @storybook/addon-actions</code></pre>
+<pre><code class="lang-js"><span class="hljs-comment">// addons.js</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'@storybook/addon-actions/register'</span>;</code></pre>
+<p>This is what is responsible for showing the action panel</p>
+
+  </section>
+  <section class="">
+    <h3 id="modify-our-story-for-the-action">Modify our story for the action</h3>
+<pre><code class="lang-jsx">import { storiesOf } from &#39;@storybook/react&#39;;
+import { action } from &#39;@storybook/addon-actions&#39;;
+import List from &#39;./list-component&#39;;
+
+storiesOf(&#39;List&#39;, module)
+    .add(&#39;Multiple items&#39;, () =&gt; {
+        return (
+            &lt;List
+                onItemClicked={action(&#39;Item clicked!&#39;)}
+                items={[&#39;item 1&#39;, &#39;item 2&#39;, &#39;item 3&#39;]}
+            /&gt;
+        );
+    });</code></pre>
+
+  </section>
+  <section class="">
+    <h3 id="storybook-capabilities">Storybook Capabilities</h3>
+<ul>
+<li>Allow User Input In Stories</li>
+</ul>
+
+  </section>
+  <section class=" knobs">
+    
+  </section>
+  <section class="">
+    <h3 id="add-the-knobs-addon">Add the &quot;knobs&quot; addon</h3>
+<pre><code class="lang-bash">$ npm install @storybook/addon-knobs</code></pre>
+<pre><code class="lang-js"><span class="hljs-comment">// addons.js</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'@storybook/addon-knobs/register'</span>;</code></pre>
+<p>This is what is responsible for showing the panel</p>
+
+  </section>
+  <section class="">
+    <h3 id="modify-the-story">Modify the story</h3>
+<pre><code class="lang-jsx">import { storiesOf } from &#39;@storybook/react&#39;;
+import List from &#39;./list-component&#39;;
+import { action } from &#39;@storybook/addon-actions&#39;;
+import {withKnobs, array} from &#39;@storybook/addon-knobs&#39;;
+
+storiesOf(&#39;List&#39;, module)
+    .addDecorator(withKnobs)
+    .add(&#39;Multiple items&#39;, () =&gt; (
+        &lt;List
+            onItemClicked={action(&#39;Item clicked!&#39;)}
+            items={
+                array(&#39;Items&#39;, [
+                    &#39;item 1&#39;,
+                    &#39;item 2&#39;,
+                    &#39;item 3&#39;
+                ])
+            }
+        /&gt;
+    ));</code></pre>
+
+  </section>
+  <section class="">
+    <h3 id="storybook-capabilities">Storybook Capabilities</h3>
+<ul>
+<li>Interactive Unit Tests</li>
+</ul>
+
+  </section>
+  <section class=" unittest">
+    
+  </section>
+  <section class="">
+    <h1 id="utilize-in-your-workflow">Utilize in Your Workflow</h1>
+
+  </section>
+  <section class="">
+    <h3 id="styleguides">Styleguides</h3>
+<ul>
+<li>Show what components are available for composition</li>
+<li>Can show full page layouts</li>
+</ul>
+
+  </section>
+  <section class="">
+    <p><img src="assets/styleguide1.png" alt=""></p>
+
+  </section>
+  <section class="">
+    <p><img src="assets/styleguide2.png" alt=""></p>
+
+  </section>
+  <section class="">
+    <h3 id="prototyping">Prototyping</h3>
+<ul>
+<li>No backend required</li>
+<li>Get a feel for the product before investing in backend integration</li>
+</ul>
+
+  </section>
+  <section class="">
+    <h3 id="product-demos">Product Demos</h3>
+<ul>
+<li>Stitch together stories With the <code>link</code> addon to demo a product.</li>
+</ul>
+
+  </section>
+  <section class="">
+    <h1 id="case-studies">Case Studies</h1>
+
+  </section>
+  <section class=" case-studies">
+    
+  </section>
+  <section class="">
+    <h3 id="conclusion">Conclusion</h3>
+<ul>
+<li>Getting involved in the design process doesn&#39;t have to be scary</li>
+<li>Start fresh or add to existing React/VueJS app</li>
+<li>Hit the ground running when designs are finished</li>
+<li>Version control designs and their stories</li>
+</ul>
+
+  </section>
+  <section class="">
+    <h1 id="questions-">Questions?</h1>
+
+  </section>
+  <section class="">
+    <h3 id="resources">Resources</h3>
+<ul>
+<li><a href="https://github.com/cjsaylor/design-for-success-slides">https://github.com/cjsaylor/design-for-success-slides</a></li>
+<li><a href="https://www.chris-saylor.com/design-for-success-slides/example">https://www.chris-saylor.com/design-for-success-slides/example</a></li>
+<li><a href="https://www.chris-saylor.com/design-for-success-slides/slides">https://www.chris-saylor.com/design-for-success-slides/slides</a></li>
+<li><a href="http://www.styleguidedrivendevelopment.com/">http://www.styleguidedrivendevelopment.com/</a></li>
+</ul>
+
+  </section>
+  <section class="">
+    <h1 id="fin">Fin</h1>
+
+  </section>
+
+    </div>
+</div>
+<script src="./node_modules/reveal.js/js/reveal.js"></script>
+<script src="./node_modules/prismjs/prism.js"></script>
+<script src="./node_modules/prismjs/components/prism-jsx.js"></script>
+<!-- <script src="./node_modules/reveal.js/lib/js/head.min.js"></script> -->
+<script>
+  Reveal.initialize({
+    controls: false,
+    history: true
+    // dependencies: [
+    //   {
+    //     src: './node_modules/reveal.js/plugin/highlight/highlight.js',
+    //     async: true,
+    //     callback: function() {
+    //       hljs.initHighlightingOnLoad();
+    //     },
+    //   }
+    // ]
+  });
+</script>
+<script>
+  /**
+ * Returns the current page number of the presentation.
+ */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+
+/**
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
+ */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
+
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  try {
+    window.history.replaceState({} , null, '#' + currentPosition());
+  } catch (e) {
+    window.location.hash = currentPosition();
+  }
+}
+
+
+/**
+ * Sets the progress indicator.
+ */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+});
+
+
+</script>
+</body>
+</html>
