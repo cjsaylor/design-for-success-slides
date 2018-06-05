@@ -40,13 +40,13 @@ Bad UX designs makes us susceptible to disruption.
 
 --
 
-![](ride-hail.png)
+![](assets/ride-hail.png)
 
 --
 
 ### Common Design Workflow
 
-![](common-design-flow.png)
+![](assets/common-design-flow.png)
 
 ### = ?
 
@@ -60,7 +60,7 @@ Bad UX designs makes us susceptible to disruption.
 
 ### ~~Common~~ Design Workflow
 
-![](common-design-flow-modified.png)
+![](assets/common-design-flow-modified.png)
 
 ### = ?
 
@@ -177,15 +177,15 @@ storiesOf('List', module)
 
 --
 
-![](./04-storybook.png)
+![](assets/./04-storybook.png)
 
 --
 
-![](./05-storybook.png)
+![](assets/./05-storybook.png)
 
 --
 
-![](./06-storybook.png)
+![](assets/./06-storybook.png)
 
 --
 
@@ -323,11 +323,11 @@ storiesOf('List', module)
 
 --
 
-![](styleguide1.png)
+![](assets/styleguide1.png)
 
 --
 
-![](styleguide2.png)
+![](assets/styleguide2.png)
 
 --
 
@@ -365,9 +365,10 @@ storiesOf('List', module)
 
 ### Resources
 
-* https://speakerdeck.com/cjsaylor/design-for-success-with-react-and-storybooks
 * https://github.com/cjsaylor/design-for-success-slides
 * https://www.chris-saylor.com/design-for-success-slides/example
+* https://www.chris-saylor.com/design-for-success-slides/slides
+* http://www.styleguidedrivendevelopment.com/
 
 --
 
