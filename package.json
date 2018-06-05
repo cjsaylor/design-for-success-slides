@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "./node_modules/.bin/cleaver watch storybook.md",
-    "build": "./node_modules/.bin/cleaver storybook.md --output index.html"
+    "build": "./build_slides.sh"
   },
   "author": "",
   "license": "ISC",
