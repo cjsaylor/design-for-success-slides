@@ -17,6 +17,14 @@ theme: ./node_modules/reveal-cleaver-theme
 
 --
 
+## View the slides
+
+![](assets/qr.png)
+
+goo.gl/Y33QR9
+
+--
+
 # Design?
 ## That's someone elses job.
 
